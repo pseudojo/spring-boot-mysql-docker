@@ -1,7 +1,0 @@
-#start docker composer
-
-docker-compose up
-
-#shutdown docker-composer
-
-docker-compose down
