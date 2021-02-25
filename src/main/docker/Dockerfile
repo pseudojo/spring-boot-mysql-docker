@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:11-jdk-buster
 RUN apt-get update && apt-get install netcat-openbsd -y
 VOLUME /tmp
 ADD demo.jar demo.jar
