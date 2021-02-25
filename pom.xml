@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sma</groupId>
-    <artifactId>springboot_docker_mysql</artifactId>
+    <artifactId>spring-boot-mysql-docker</artifactId>
     <version>1.9-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>springboot_docker_mysql</name>
+    <name>spring-boot-mysql-docker</name>
     <description>Demo project for Spring Boot with docker and mysql</description>
 
     <parent>
@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <docker.image.prefix>sopheamak</docker.image.prefix>
+        <docker.image.prefix>pseudojo</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -44,13 +44,19 @@
 	<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.23</version>
         </dependency>
-   
-    <dependency>
+	<dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.4.0-b180830.0359</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-         </dependencies>
+    </dependencies>
     <build>
         <finalName>demo</finalName>
         <plugins>
@@ -62,11 +68,12 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.13</version>
+                <version>1.2.2</version>
+                <!-- <version>0.4.13</version> -->
                 <configuration>
                   <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                   <dockerDirectory>src/main/docker</dockerDirectory>
-                  <dockerHost>http://172.17.42.1:2375</dockerHost>
+                  <dockerHost>http://127.0.0.1:2375</dockerHost>
                  
                  <!-- overwirte tags everytime image is built with docker:duild -->
                  <forceTags>true</forceTags>
